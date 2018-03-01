@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1519809854 source:/media/thibault/D:/Ubuntu_Files/Programmation/Langage_C/Projets_Persos/Reseau/Remote_Shell_TheReal/client/rbs_clt.c
+	<arpa/inet.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<errno.h>
+	<unistd.h>
+
