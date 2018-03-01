@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1519498463 source:/media/thibault/D:/Ubuntu_Files/Programmation/Langage_C/Projets_Persos/Reseau/Remote_Shell_TheReal/server/rbs_srv.c
+	<sys/stat.h>
+	<syslog.h>
+	<netdb.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<errno.h>
+	<unistd.h>
+
