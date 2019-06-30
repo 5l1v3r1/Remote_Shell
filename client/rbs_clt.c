@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     hostsin.sin_family  = AF_INET;
     hostsin.sin_port    = htons(1234);
-    hostsin.sin_addr.s_addr = inet_addr("127.0.0.1"); // Enter here the server IP address.
+    hostsin.sin_addr.s_addr = inet_addr("127.0.0.1"); // entrez ici l'adresse du server ou laisser l'ip local (192.168.1.25)
     memset(hostsin.sin_zero, 0, 8);
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -102,6 +102,7 @@ int main(int argc, char *argv[])
         if(strcmp(bufferCmd, "quit") == 0)
         {
             close(sock);
+            printf("[+] Disonnected from the server.\n");
             return EXIT_SUCCESS;
         }
 
