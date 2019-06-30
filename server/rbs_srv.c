@@ -43,10 +43,12 @@ int main(int argc, char*argv[])
     int ret = 0;
     unsigned int data_len = 0;
 
-    char Msg[] = "Hey ! Je suis HAL, le server, vous êtes maintenant connecté.\r\n";
+    char Msg[] = "Hey ! Iam HAL the server, you are now connected.\r\n";
     int msg_len = strlen(Msg);
 
-    daemonize(fils);
+    //daemonize(fils);
+
+    printf("[+] The server is open and ready.\n[+] Waiting for the openning of the remote shell.\n\n");
 
     sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if(sock == INVALID_SOCKET)
@@ -209,7 +211,7 @@ void daemonize(pid_t fils)
     umask(0);
 
 
-    /*  Redirect standard I/O for cancel all user terminal messages */
+    /*  Redirect standard I/O for cancel all user terminal messages
     if( freopen("/dev/null", "r", stdin) == NULL )
         ERROR("freopen() stdin");
 
@@ -218,5 +220,7 @@ void daemonize(pid_t fils)
 
     if( freopen("/dev/null", "w", stderr) == NULL )
         ERROR("freopen stderr")
+
+    */
 }
 

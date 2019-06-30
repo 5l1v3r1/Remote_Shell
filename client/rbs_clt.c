@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     hostsin.sin_family  = AF_INET;
     hostsin.sin_port    = htons(1234);
-    hostsin.sin_addr.s_addr = inet_addr("192.168.1.25"); // entrez ici l'adresse du server ou laisser l'ip local (192.168.1.25)
+    hostsin.sin_addr.s_addr = inet_addr("127.0.0.1"); // Enter here the server IP address.
     memset(hostsin.sin_zero, 0, 8);
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 
     do
     {
-        printf("Entrez une cmd a envoyer au server (quit pour quitter le programme) : ");
+        printf("\nEnter a command (quit for close the remote shell) :\n>");
         if(fgets(bufferCmd, 32, stdin) == NULL)
                 ERROR("fgets() saisis cmd");
 

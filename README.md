@@ -1,2 +1,30 @@
-# Remote_Shell
-A remote shell program.
+Hello,
+
+Run the server file (rbs_srv) with the command: sudo ./rbs_srv on your machine.
+
+On the same machine run the client (rbs_clt) with the command : sudo ./rbs_clt
+
+You will see in the client terminal thoses sentences : 
+
+
+"Hey ! Iam HAL the server, you are now connected.
+
+Enter a command (quit for close the remote shell) :
+>
+"
+
+Enter a linux command, the one you want and you will get the command output, simple :)
+
+
+PS: if you want to run the server on a machine and the client on another machine you must edit just a little bit the client code.
+In the client folder , in the file rbs_clt.c, at line 40. This one :
+
+hostsin.sin_addr.s_addr = inet_addr("127.0.0.1"); // Enter here the server IP address.
+
+You have like its written to enter the server ip adress, and then recompile the client with the command :
+
+gcc rbs_clt.c -o rbs_clt
+
+Have fun !
+
+
